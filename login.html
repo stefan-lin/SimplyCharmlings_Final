@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Contacts</title>
+<title>Account</title>
 <meta charset="utf-8">
 <meta name = "format-detection" content = "telephone=no" />
 <link rel="icon" href="images/favicon.ico">
@@ -20,6 +20,15 @@
 <script src="js/jquery.ui.totop.js"></script>
 <script src="js/TMForm.js"></script>
 <script src="js/modal.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 <script>
  $(document).ready(function(){
@@ -52,8 +61,8 @@
             <nav>
               <ul class="sf-menu">
                <li><a href="index.html">HOME</a></li>
-               <li><a href="products.html">CATEGORIES</a></li>
-               <li><a href="about.html">ABOUT</a></li>
+               <li><a href="index.html#cate">CATEGORIES</a></li>
+               <li><a href="index.html#aboutus">ABOUT</a></li>
                <li class="current"><a href="login.html">LOG IN</a></li>
                <li><a href="cart.html">CART</a></li>
              </ul>
@@ -69,108 +78,41 @@
 <!--=====================
           Content
 ======================-->
-<section class="content ctn__1">
-  <div class="container">
-   <div class="row">
-       <div class="grid_1"><p></p></div>
-              <div class="grid_4">
-        <h2>New User</h2>
-        <form id="form" method="POST" action="mail/MailHandler.php">
-        <div class="form_spinner">
-        <img src="images/Preloader_4.gif" alt="">
-        </div>
-        <div class="modal fade response-message">
-        <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">Modal title</h4>
-        </div>
-        <div class="modal-body">
-        asfasfasf
-        </div>      
-        </div>
-        </div>
-        </div>
-        <div class="response-error-message"></div>
-        <label class="name">
-        <input type="text" name="name" value="" data-constraints="@Required @JustLetters" id="regula-generated-127546">
-        <span class="empty-message">*This field is required.</span>
-        <span class="error-message">*This is not a valid name.</span>
-        <span class="_placeholder" style="left: 0px; top: 0px; width: 512px; height: 47px;">Name:</span></label>         
-        <label class="email">
-        <input type="text" name="email" value="" data-constraints="@Required @Email" id="regula-generated-549276">
-        <span class="empty-message">*This field is required.</span>
-        <span class="error-message">*This is not a valid email.</span>
-        <span class="_placeholder" style="left: 0px; top: 0px; width: 512px; height: 47px;">E-mail:</span></label>
-        <label class="phone">
-        <input type="text" name="phone" value="" data-constraints="@Required @JustNumbers" id="regula-generated-495000">
-        <span class="empty-message">*This field is required.</span>
-        <span class="error-message">*This is not a valid phone.</span>
-        <span class="_placeholder" style="left: 0px; top: 0px; width: 512px; height: 47px;">Phone:</span></label>
-        <label class="message">
-        <textarea name="message" data-constraints="@Required @Length(min=20,max=999999)" id="regula-generated-887660"></textarea>
-        <span class="empty-message">*This field is required.</span>
-        <span class="error-message">*The message is too short.</span>
-        <span class="_placeholder" style="left: 0px; top: 0px; width: 512px; height: 308px;">Message:</span></label>
-        <div class="clear"></div>
-        <div class="btns">
-        <a href="#" data-type="reset" class="btn">clear</a>
-        <a href="#" data-type="submit" class="btn">send</a>
-        </div>
-        <input type="hidden" name="stripHTML" value="true"></form>   
-      </div>
-  <div class="grid_2"><p></p></div>
-            <div class="grid_4">
-        <h2>Exsisting User</h2>
-        <form id="form">
-        <div class="form_spinner">
-        <img src="images/Preloader_4.gif" alt="">
-        </div>
-        <div class="modal fade response-message">
-        <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">Modal title</h4>
-        </div>
-        <div class="modal-body">
-        asfasfasf
-        </div>      
-        </div>
-        </div>
-        </div>
-        <div class="response-error-message"></div>
-        <label class="name">
-        <input type="text" name="name" placeholder="Name:" value="" data-constraints="@Required @JustLetters">
-        <span class="empty-message">*This field is required.</span>
-        <span class="error-message">*This is not a valid name.</span>
-        </label>         
-        <label class="email">
-        <input type="text" name="email" placeholder="E-mail:" value="" data-constraints="@Required @Email">
-        <span class="empty-message">*This field is required.</span>
-        <span class="error-message">*This is not a valid email.</span>
-        </label>
-        <label class="phone">
-        <input type="text" name="phone" placeholder="Phone:" value="" data-constraints="@Required @JustNumbers">
-        <span class="empty-message">*This field is required.</span>
-        <span class="error-message">*This is not a valid phone.</span>
-        </label>
-        <label class="message">
-        <textarea name="message" placeholder="Message:" data-constraints="@Required @Length(min=20,max=999999)"></textarea>
-        <span class="empty-message">*This field is required.</span>
-        <span class="error-message">*The message is too short.</span>
-        </label>
-        <div class="clear"></div>
-        <div class="btns">
-        <a href="#" data-type="reset" class="btn">clear</a>
-        <a href="#" data-type="submit" class="btn">send</a>
-        </div>
-        </form>   
-      </div>
+<!--=====================
+  TODO: USE SECURE CONNECTION
+======================-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <span><h2>New User</h2></span><br>
+      <form action="reg.php" method="post">
+        <lable>First Name</label><br>
+        <input name="fname" type="text" placeholder="First Name" width="50px"><br>
+        <lable>Last Name</label><br>
+        <input name="lname" type="text" placeholder="Last Name" width="50px"><br>
+        <lable>Email</label><br>
+        <input name="email" type="text" placeholder="Email" width="50px"><br>
+        <lable>Password</label><br>
+        <input name="password" type="text" placeholder="Password" width="50px"><br>
+        <lable>Address</label><br>
+        <input name="address" type="text" placeholder="Address" width="50px"><br>
+        <lable>Phone</label><br>
+        <input name="phone" type="text" placeholder="Phone" width="50px"><br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    <div class="col-md-6">
+      <span><h2>Existing User</h2></span><br>
+      <form action="login.php" method="post">
+        <lable>Email</label><br>
+        <input name="email" type="text" placeholder="Email" width="50px"><br>
+        <lable>Password</label><br>
+        <input name="password" type="text" placeholder="Password" width="50px"><br>
+        <input type="submit" value="Login">
+      </form>
     </div>
   </div>
-</section>
+</div>
 
 <!--==============================
               footer

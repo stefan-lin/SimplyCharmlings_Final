@@ -30,5 +30,9 @@
     private function _get_salt(){
       return bin2hex(openssl_random_pseudo_bytes(32));
     } // END _get_salt FUNCTION
+    
+    function get_password_hashed($str_password, $salt){
+      return hash(HASH_ALGO, $str_password . $salt);
+    }
   } // END CLASS PasswordHelper
 ?>

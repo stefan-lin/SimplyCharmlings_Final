@@ -158,6 +158,90 @@
     }
   }
   
+  function is_email_existing($email){
+    $query = "SELECT * FROM User WHERE email=:input;";
+    $stmt = $this->dbh->prepare($query);
+    $stmt->bindParam(':input', $email);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return ($stmt->rowCount() == 1)? true: false;
+  } // END is_email_existing
+  
+  function get_password_salt($email){
+    $query = 'SELECT password, salt FROM User WHERE email=:input;';
+    $stmt = $this->dbh->prepare($query);
+    $stmt->bindParam(':input', $email);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    // ['password'=>password, 'salt'=>salt]
+    return (count($result) == 1)? $result[0]: null;
+  }
+  
+  function insert_new_user($email, $fname, $lname, $pswd, $salt, $addr, $phone){
+    // USER TABLE
+    $user_query = 'INSERT INTO User (usr_id, email, first_name, last_name, ';
+    $user_query .= 'salt, password) VALUES (null, :e, :f, :l, :s, :p);';
+    $stmt = $this->dbh->prepare($user_query);
+    $stmt->execute(array(
+      ':e' => $email,
+      ':f' => $fname,
+      ':l' => $lname,
+      ':s' => $salt,
+      ':p' => $pswd
+    ));
+    
+    // PHONE TABLE
+    $phone_query = 'INSERT INTO Phone (phone_id, phone_str) VALUES (null, :phone);';
+    $stmt = $this->dbh->prepare($phone_query);
+    $stmt->bindParam(':phone', $phone);
+    $stmt->execute();
+    
+    // ADDRESS TABLE
+    $address_query = 'INSERT INTO Address (address_id, addr_str) VALUES (null, :addr);';
+    $stmt = $this->dbh->prepare($address_query);
+    $stmt->bindParam(':addr', $addr);
+    $stmt->execute();
+    
+    $user_id = $this->get_user_id($email);
+    $phone_id = $this->get_phone_id($phone);
+    $addr_id = $this->get_address_id($addr);
+    
+    $query_ua = "INSERT INTO User_Address (usr_id, addr_id) VALUES ($user_id, $addr_id);";
+    $query_up = "INSERT INTO User_Phone (usr_id, phone_id) VALUES ($user_id, $phone_id);";
+    $stmt = $this->dbh->prepare($query_ua);
+    $stmt->execute();
+    $stmt = $this->dbh->prepare($query_up);
+    $stmt->execute();
+  } // END insert_new_user FUNCTION
+  
+  private function get_user_id($email){
+    $query = 'SELECT usr_id FROM User WHERE email=:e;';
+    $stmt = $this->dbh->prepare($query);
+    $stmt->bindParam(':e', $email);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return count($result)? $result[0]['usr_id']: null;
+  }
+  
+  private function get_phone_id($phone){
+    $query = 'SELECT phone_id FROM Phone WHERE phone_str=:p;';
+    $stmt = $this->dbh->prepare($query);
+    $stmt->bindParam(':p', $phone);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return count($result)? $result[0]['phone_id']: null;
+  }
+  
+  private function get_address_id($addr){
+    //SELECT address_id From Address WHERE addr_str = 'San Jose';
+    $query = 'SELECT address_id FROM Address WHERE addr_str=:a;';
+    $stmt = $this->dbh->prepare($query);
+    $stmt->bindParam(':a', $addr);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return count($result)? $result[0]['address_id']: null;
+  }
 } // END CLASS Database
 
 ?>
