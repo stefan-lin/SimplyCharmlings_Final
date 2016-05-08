@@ -1,3 +1,12 @@
+<!-- Prepare $_SESSION variables -->
+<?php session_start();
+
+session_unset();
+$_SESSION['cart'] = array();
+$_SESSION['qty']  = 0;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +65,7 @@
                <li><a href="#cate">CATEGORIES</a></li>
                <li><a href="#aboutus">ABOUT</a></li>
                <li><a href="login.html">LOG IN</a></li>
-               <li><a href="cart.html">CART</a></li>
+               <li><a href="cart.php">CART</a></li>
                <li><a href="logout.php">X</a></li>
              </ul>
             </nav>        

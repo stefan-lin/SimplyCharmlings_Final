@@ -55,7 +55,7 @@
                <li><a href="index.html#cate">CATEGORIES</a></li>
                <li><a href="index.html#aboutus">ABOUT</a></li>
                <li class="current"><a href="login.html">LOG IN</a></li>
-               <li><a href="cart.html">CART</a></li>
+               <li><a href="cart.php">CART</a></li>
              </ul>
             </nav>        
             <div class="clear"></div>

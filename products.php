@@ -1,3 +1,5 @@
+
+<?php session_start(); ?>
 <?php include 'views/header.php'; ?>    
 <section class="content gallery pad1"><div class="ic">More Website Templates @ TemplateMonster.com - July 30, 2014!</div>
   <div class="container">
@@ -23,17 +25,22 @@
   //__DESCRIPTION__
   $product_body_4 = '<br><br>$';
   //__PRICE__
-  $product_body_5 = '<br><a href="#" class="btn add_to_cart">Add to Cart</a></div></div></div></div>';
+  $product_body_5 = '<br><a href="#" class="btn add_to_cart" data-value="'; //get product
+
+  $product_body_6 = '">Add to Cart</a></div></div></div></div>';
+
   $delimeter = '<div class="clear sep__1"></div>'; // EVERY THREE PRODUCTS
-  $count = 1;
-  
-  foreach($products as $key => $value){
+  $count = 1;  
+
+
+  foreach($products as $value){
     $product_str = $product_head . $value['product_id'] . $product_body_1;
     $product_str .= $value['url'] . $product_body_2 . $value['product_name'];
     $product_str .= $product_body_3 . $value['description'] . $product_body_4;
     $product_str .= $value['price'] . $product_body_5;
+    $product_str .= $value['product_name'] . "," . $value['price'] . $product_body_6;
     if($count % 3 == 0){
-      $product_str .= $delimeter;
+      $product_str .= $delimeter;      
     }
     $count++;
     
@@ -44,3 +51,41 @@
   </div>
 </section>
 <?php include 'views/footer.php'; ?>
+
+
+<?php
+
+if (!empty($_POST['add'])) {
+  $productArray = $_POST['add'];
+  addToCart($productArray);
+}
+
+function addToCart($productArray) {
+  $productName = $productArray[0];
+  $productPrice = $productArray[1];  
+  $productArray[2] = 1;
+  //$productArray = {name, price, quantity in cart}
+
+  if (array_key_exists($productName, $_SESSION['cart'])) {// if product is already in cart
+    $_SESSION['cart'][$productName][2]++; // increment quantity in cart 
+  } else {    
+    $_SESSION['cart'][$productName] = $productArray;        
+  }    
+}
+
+?>
+
+<!-- Javascript -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.add_to_cart').click(function(){
+      var item = $(this).data("value");
+      var itemArray = item.split(",");
+      data = { add : itemArray };
+
+      $.post('products.php', data, function() {
+        alert("Added " + data.add[0] + " to your cart!");
+      });
+    });
+  });
+</script>
