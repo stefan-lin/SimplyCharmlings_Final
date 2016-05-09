@@ -1,24 +1,12 @@
 <?php session_start(); ?>
 <?php include 'views/header.php'; ?>    
-<section class="content gallery pad1">
+<section class="content">
 	<div class="container">
 		<div class="row">
+			<div class="grid_12">
+			<h2>Your Cart</h2>
+			</div>
 
-<style>
-table, th, td {
-	border: 1px solid black;	
-}
-
-td {
-	text-align: center;
-}
-</style>
-<table>
-	<tr>
-		<th>Item</th>
-		<th>Price</th>	
-		<th>Quantity</th>
-	</tr>	
 <?php
 	//html tags for decrement button
 	$button1 = '<button class="decrementCart" data-value="';
@@ -28,45 +16,75 @@ td {
 	$button3 = '<button class="addOne" data-value="';
 	$button4 = '">+</button>';	
 
-	////intialize cartItems and cartTotal
+	//intialize cartItems and cartTotal
 	$_SESSION['cartItems'] = array();
 	$_SESSION['total'] = 0;
 
 
+
+	//assign html tags to PHP variables
+	// $product = { name, price, qty, id, url }
+	$htmlHead = '<div class="grid_12">
+							 <div class="maxheight" style="height: 249px;">
+							 <div class="box_inner">
+							 <span style="display: none;">';
+	// attach id
+	$htmlBody1 = '</span>
+								<div class="grid_3special">
+								<img src="';
+	// attach url
+	$htmlBody2 = '"></div> 
+								<div class = "grid_4special">
+								<div class="text1"><h1 style="font-size: x-large;">';
+	// attach name
+	$htmlBody3 = '</h1></div></div>
+								<div class="grid_1special big">$';
+	// attach price
+	$htmlBody4 = '<br><h1>';
+	// attach qty
+	$htmlBody5 = '</h1></div>
+								<div class="grid_1add top">
+								<a href="#" class="link1" data-value="';
+	// attach name
+	$htmlBody6 = '">+</a></div>
+								<div class="grid_1add top">
+								<a href="#" class="link3" data-value="';
+	// attach name
+	$htmlBody7 = '">-</a></div></div></div></div>';
+								
+	// $product = { name, price, qty, id, url }
 	foreach($_SESSION['cart'] as $product) {
 
+		$htmlString = $htmlHead . $product[3] . $htmlBody1
+								. $product[4] . $htmlBody2 . $product[0]
+								. $htmlBody3 . $product[1] . $htmlBody4
+								. $product[2] . $htmlBody5 . $product[0]
+								. $htmlBody6 . $product[0] . $htmlBody7;
 
-		echo "<tr>";
-		echoCell($product[0]); // product name		
-		echoCell($product[1]); // price
-		echoCell($product[2]); // qty in cart
-		
-		//add productID to $_SESSION['cartItems']
+		echo $htmlString;
+
+		// separate items
+		echo '<div class="grid_12"><p></div>';
+
 		$_SESSION['cartItems'][] = $product[3];
-
-		$buttonSub = $button1;
-		$buttonSub .= $product[0] . $button2;
-		echoCell($buttonSub);
-
-		$buttonAdd = $button3;
-		$buttonAdd .= $product[0] . $button4;
-		echoCell($buttonAdd);		
-		echo "</tr>";
-		
 		for ($i = 0; $i < $product[2]; $i++)
 			$_SESSION['total'] += $product[1];		
 	}
 
-	echo "Cart total: $" . $_SESSION['total'];
+	// show total
+	echo '<div class="grid_12">
+					<h2>Total: $' . $_SESSION['total'] . 
+					'</h2></div>';
+?>      
 
-	function echoCell($info) {
-		echo "<td>";
-		echo $info;
-		echo "</td>";
-	}	
-?>
-</table>
-<button class="emptyCart" data-value="">EMPTY CART</button>
+<div class="grid_12special">
+<a href="#" class="link4">Empty Cart</a>
+</div>
+
+<div class="grid_12">
+<a href="#" class="link2">Checkout</a>
+</div>
+
 		</div>
 	</div>
 </section>
@@ -114,7 +132,7 @@ function emptyCart() {
 <!-- Javascript -->
 <script type="text/javascript">
   $(document).ready(function(){
-    $('.decrementCart').click(function(){
+    $('.link3').click(function(){ // decrement from cart
       var item = $(this).data("value");      
       data = { sub : ['dec', item] };
       $.post('cart.php', data, function() {
@@ -123,7 +141,7 @@ function emptyCart() {
       });
     });
 
-    $('.addOne').click(function(){
+    $('.link1').click(function(){ // add to cart
     	var item = $(this).data("value");
     	data = { sub : ['add', item] };
     	$.post('cart.php', data, function() {
@@ -132,7 +150,7 @@ function emptyCart() {
     	});
     });
 
-    $('.emptyCart').click(function(){
+    $('.link4').click(function(){ // empty cart
     	var item = $(this).data("value");
     	data = { sub : ['empty', item] };
     	$.post('cart.php', data, function() {

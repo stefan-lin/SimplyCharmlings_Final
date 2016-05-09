@@ -38,7 +38,7 @@
     $product_str .= $value['url'] . $product_body_2 . $value['product_name'];
     $product_str .= $product_body_3 . $value['description'] . $product_body_4;
     $product_str .= $value['price'] . $product_body_5;
-    $product_str .= $value['product_name'] . "," . $value['price'] . "," . $value['product_id'] . $product_body_6;
+    $product_str .= $value['product_name'] . "," . $value['price'] . "," . $value['product_id'] . "," . $value['url'] . $product_body_6;
     if($count % 3 == 0){
       $product_str .= $delimeter;      
     }
@@ -79,9 +79,10 @@ function addToCart($productArray) {
   $(document).ready(function(){
     $('.add_to_cart').click(function(){
       var item = $(this).data("value");
-      var itemArray = item.split(",");
-      itemArray.push(itemArray[2]); // push productID to index 3
-      itemArray[2] = 1; // intialize quantity
+      var itemArray = item.split(","); // {name, price, id, img}
+      itemArray.push(itemArray[3]); // push img to index 4: {name, price, id, img, img}
+      itemArray[3] = itemArray[2]; // push id to index 3: {name, price, id, id, img}
+      itemArray[2] = 1; // intialize quantity ot index 2: { name, price, qty, id, img}
       data = { add : itemArray };
 
       $.post('products.php', data, function() {

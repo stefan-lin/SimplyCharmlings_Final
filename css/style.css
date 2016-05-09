@@ -190,6 +190,53 @@ a:hover {
     margin-bottom: 55px;
 }
 
+
+.link3 {
+    margin-top: 29px;
+    display: block;
+    float: right;
+    color: #fff;
+    background-color: #2e2d2d;
+    font-size: 24px;
+    line-height: 36px;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 55px;
+}
+
+.link2 {
+    margin-top: 29px;
+    display: block;
+    float: right;
+    color: #fff;
+    background-color: #2e2d2d;
+    font-size: 24px;
+    line-height: 36px;
+    width: 200px;
+    height: 36px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 55px;
+}
+
+
+.link4 {
+    margin-top: 29px;
+    display: block;
+    float: right;
+    color: #fff;
+    background-color: #2e2d2d;
+    font-size: 24px;
+    line-height: 36px;
+    width: 200px;
+    height: 36px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 55px;
+}
+
 @media (max-width: 767px) {
 .link1 {
     display: block;
@@ -230,6 +277,14 @@ a:hover {
 .pad1 {
 }
 
+.logo{
+    margin-left: 28%;
+
+}
+
+.logo h2{
+    margin-left: 24%;
+}
 
 .img_inner {
     max-width: 100%;
