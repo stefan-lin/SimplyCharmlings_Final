@@ -441,10 +441,51 @@ table {
     margin-left: 84px;
   }
 }
+
+.grid_3special{
+  width: 270px;
+  float: left;
+  margin-left: 0px;
+}
+
+.grid_4special{
+  width: 370px;
+  float: left;
+  margin-left: 30px;
+  margin-top: 3%;
+}
+
+.grid_1special{
+    margin-left: 70px;
+    margin-right: 60px;
+    margin-top: 4%;
+    width: 70px;
+}
+
+.grid_1add{
+    margin-right: 3%;
+    margin-top: 4%;
+    width: 70px;
+}
+.big{
+      font-size: larger;
+}
+
+.top{
+margin-top: 2%;
+
+}
 .select-menu {
   display: none !important;
 }
 @media (max-width: 767px) {
+
+.grid_1add{
+    margin: 20px;
+
+
+}
+
   .container {
     width: 420px;
     padding: 0 0px;

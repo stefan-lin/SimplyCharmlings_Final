@@ -190,6 +190,26 @@ a:hover {
     margin-bottom: 55px;
 }
 
+@media (max-width: 767px) {
+.link1 {
+    display: block;
+    float: right;
+    color: #fff;
+    background-color: #2e2d2d;
+    font-size: 24px;
+    line-height: 36px;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 55px;
+    display: block;
+    margin: 20px;
+}}
+
+
+
+
 .link1:hover {
     background-color: #aaccaa;
     color: #fff;
@@ -431,6 +451,19 @@ header h1 a img {
 .bq1 .fleft {
     margin-top: 5px;
     margin-right: 19px;
+}
+
+.bq1 img{
+    max-width: 200px;
+    padding-bottom: 40px;
+}
+
+ @media screen and (max-width: 767px) {
+    .bq1 img{
+        max-width: 150px;
+        padding-bottom: 50%;
+}
+
 }
 
 .bq_title {
@@ -739,7 +772,7 @@ header h1 a img {
 }
 
 .socials .fa {
-    background-color: #ddd;
+    background-color: #faadff;
     font-size: 25px;
     float: left;
     line-height: 50px;
@@ -758,7 +791,12 @@ header h1 a img {
     margin-left: 16px;
 }
 
-.socials .fa.fa-pinterest {
+.socials .fa.fa-instagram {
+    font-size: 30px;
+}
+
+
+.socials .fa.fa-envelope-o{
     font-size: 30px;
 }
 

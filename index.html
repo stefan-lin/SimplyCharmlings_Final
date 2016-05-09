@@ -1,8 +1,9 @@
 <!-- Prepare $_SESSION variables -->
 <?php session_start();
 
+// session_unset();
 $_SESSION['cart'] = array();
-$_SESSION['cartItems'] = array();
+$_SESSION['qty']  = 0;
 
 ?>
 
@@ -62,7 +63,7 @@ $_SESSION['cartItems'] = array();
               <ul class="sf-menu">
                <li class="current"><a href="index.html">HOME</a></li>
                <li><a href="#cate">CATEGORIES</a></li>
-               <li><a href="#aboutus">ABOUT</a></li>
+               <li><a href="about.html">ABOUT</a></li>
                <li><a href="login.html">LOG IN</a></li>
                <li><a href="cart.php">CART</a></li>
                <li><a href="logout.php">X</a></li>
@@ -88,12 +89,11 @@ $_SESSION['cartItems'] = array();
       <div class="grid_4">
         <div class="banner">
 		  <div class="gall_block">
-          <img src="images/products_img/CatGirl.jpg" alt="">
-          <div class="bann_capt ">
+          <img src="images/page1_img1.jpg" alt="">
+          <div class="bann_capt">
             <div class="maxheight">
               <img src="images/icon1.png" alt="">
-              <div class="bann_title">Cat Girl</div>
-              <a class="add_to_cart" href="#">Add to Cart</a>
+              <div>Cat Girl</div>
             </div>
           </div>
         </div>
@@ -105,23 +105,21 @@ $_SESSION['cartItems'] = array();
           <div class="bann_capt  bn__1">
             <div class="maxheight">
               <img src="images/icon2.png" alt="">
-              <div class="bann_title">Bear Cupcake</div>
-              <a class="add_to_cart" href="#">Add to Cart</a>
+              <div>Bear Cupcake</div>
             </div>
           </div>
-          <img src="images/products_img/BearCupcake.jpg" alt="">
+          <img src="images/page1_img2.jpg" alt="">
         </div>
 		</div>
       </div>
       <div class="grid_4">
         <div class="banner ">
 		  <div class="gall_block">
-          <img src="images/products_img/BearPopsicle.jpg" alt="">
+          <img src="images/page1_img3.jpg" alt="">
           <div class="bann_capt  bn__2">
             <div class="maxheight">
               <img src="images/icon3.png" alt="">
-              <div class="bann_title">Bear Popsicle</div>
-              <a class="add_to_cart" href="#">Add to Cart</a>
+              <div>Bear Popsicle</div>
             </div>
           </div>
 		  </div>
@@ -195,12 +193,12 @@ $_SESSION['cartItems'] = array();
               <h2>Design Team</h2>
               <p></p>
               This website is created by group members of the Baymax team at San Jose State University who are in CS 174. This course covers various materials and unique stategies about server side web programming. Each member has different skills which were combine to complie this beautiful site which sells clay products to consumers.<br>
-              <a href="#" class="btn">Meet Members</a>
+              <a href="about.html" class="btn">Meet Members</a>
             </div>
             <div class="grid_5">
               <h2>Clay Artist</h2>
               Nacy is a talented clay artist whose passion is to make minture... Nacy is a talented clay artist whose passion is to make minture... Nacy is a talented clay artist whose passion is to make minture... Nacy is a talented clay artist whose passion is to make minture... Nacy is a talented clay artist whose passion is to make minture... <br>
-              <a href="https://www.instagram.com/simplycharmlings/" class="btn">Meet Artist</a>
+              <a href="https://www.instagram.com/simplycharmlings/" target="_blank" class="btn">Meet Artist</a>
             </div>
           </div>
         </div>
@@ -209,9 +207,9 @@ $_SESSION['cartItems'] = array();
         <h2>Top Selling Products</h2>
       </div>
       <div class="gallery">
-        <div class="grid_4"><img src="images/page1_img4.jpg" alt=""></a><a href="#" class="link1">+</a><div class="clear"></div></div>
-        <div class="grid_4"><img src="images/page1_img5.jpg" alt=""></a><a href="#" class="link1">+</a><div class="clear"></div></div>
-        <div class="grid_4"><img src="images/page1_img6.jpg" alt=""></a><a href="#" class="link1">+</a><div class="clear"></div></div>
+        <div class="grid_4"><img src="images/page1_img4.jpg" alt=""></a><div class="clear"></div></div>
+        <div class="grid_4"><img src="images/page1_img5.jpg" alt=""></a><div class="clear"></div></div>
+        <div class="grid_4"><img src="images/page1_img6.jpg" alt=""></a><div class="clear"></div></div>
       </div>
       <div class="grid_12">
         <h2>Contact</h2>
@@ -220,7 +218,7 @@ $_SESSION['cartItems'] = array();
           <div class="extra_wrapper">
             <div class="bq_title color1">Nacy Lastname</div>
             Sivamus at magna non nuncer tristique rhoncus. Aliquame nibh ante, egestas id dictumertolom  commodo. Praesent faucib mal.
-            <a href="https://www.instagram.com/simplycharmlings/"><span class="fa fa-chevron-right"></span>View Instagram</a>
+            <a href="https://www.instagram.com/simplycharmlings/"><span class="fa fa-chevron-right" target="_blank"></span>View Instagram</a>
           </div>
         </blockquote>
       </div>
@@ -238,10 +236,10 @@ $_SESSION['cartItems'] = array();
     <div class="row">
       <div class="grid_12">  
         <div class="socials">
-          <a href="#" class="fa fa-twitter"></a>
-          <a href="#" class="fa fa-facebook"></a>
-          <a href="#" class="fa fa-google-plus"></a>
-          <a href="#" class="fa fa-pinterest"></a>
+          <a href="https://www.instagram.com/simplycharmlings/" target="_blank" class="fa fa-instagram"></a>
+          <a href="https://twitter.com/totorothings/status/723994306290278400" target="_blank" class="fa fa-twitter"></a>
+          <a href="https://www.facebook.com/Charmlings-Isle-169452936542/" target="_blank" class="fa fa-facebook"></a>
+          <a href="mailto:simplycharmlings@gmail.com?subject=Product%20Inquiry&amp;body=Item%20Description%3A" target="_blank" class="fa fa-envelope-o"></a>
         </div>
         <div class="copyright"><span class="brand">Baymax </span> &copy; <span id="copyright-year"></span>  </br> San Jose State University | CS 174
         </div>
