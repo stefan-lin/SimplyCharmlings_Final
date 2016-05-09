@@ -26,33 +26,39 @@ td {
 
 	//html tags for add button
 	$button3 = '<button class="addOne" data-value="';
-	$button4 = '">+</button>';
+	$button4 = '">+</button>';	
 
-	$productNames = array();	
+	////intialize cartItems and cartTotal
+	$_SESSION['cartItems'] = array();
 	$_SESSION['total'] = 0;
+
+
 	foreach($_SESSION['cart'] as $product) {
-		
+
+
 		echo "<tr>";
 		echoCell($product[0]); // product name		
 		echoCell($product[1]); // price
 		echoCell($product[2]); // qty in cart
 		
+		//add productID to $_SESSION['cartItems']
+		$_SESSION['cartItems'][] = $product[3];
+
 		$buttonSub = $button1;
 		$buttonSub .= $product[0] . $button2;
 		echoCell($buttonSub);
 
 		$buttonAdd = $button3;
 		$buttonAdd .= $product[0] . $button4;
-		echoCell($buttonAdd);
-		
+		echoCell($buttonAdd);		
 		echo "</tr>";
 		
 		for ($i = 0; $i < $product[2]; $i++)
 			$_SESSION['total'] += $product[1];		
-		$productNames[] = $product[0];
 	}
 
-	echo $_SESSION['total'];
+	echo "Cart total: $" . $_SESSION['total'];
+
 	function echoCell($info) {
 		echo "<td>";
 		echo $info;

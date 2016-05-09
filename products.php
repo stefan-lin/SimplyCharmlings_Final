@@ -38,7 +38,7 @@
     $product_str .= $value['url'] . $product_body_2 . $value['product_name'];
     $product_str .= $product_body_3 . $value['description'] . $product_body_4;
     $product_str .= $value['price'] . $product_body_5;
-    $product_str .= $value['product_name'] . "," . $value['price'] . $product_body_6;
+    $product_str .= $value['product_name'] . "," . $value['price'] . "," . $value['product_id'] . $product_body_6;
     if($count % 3 == 0){
       $product_str .= $delimeter;      
     }
@@ -63,8 +63,7 @@ if (!empty($_POST['add'])) {
 function addToCart($productArray) {
   $productName = $productArray[0];
   $productPrice = $productArray[1];  
-  $productArray[2] = 1;
-  //$productArray = {name, price, quantity in cart}
+  //$productArray = {name, price, quantity in cart, product_id}
 
   if (array_key_exists($productName, $_SESSION['cart'])) {// if product is already in cart
     $_SESSION['cart'][$productName][2]++; // increment quantity in cart 
@@ -81,6 +80,8 @@ function addToCart($productArray) {
     $('.add_to_cart').click(function(){
       var item = $(this).data("value");
       var itemArray = item.split(",");
+      itemArray.push(itemArray[2]); // push productID to index 3
+      itemArray[2] = 1; // intialize quantity
       data = { add : itemArray };
 
       $.post('products.php', data, function() {
