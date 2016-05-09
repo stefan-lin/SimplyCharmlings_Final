@@ -23,6 +23,7 @@ td {
 	$button1 = '<button class="decrementCart" data-value="';
 	$button2 = '">-</button>';
 	$productNames = array();	
+	$_SESSION['total'] = 0;
 	foreach($_SESSION['cart'] as $product) {
 		
 		echo "<tr>";
@@ -36,10 +37,13 @@ td {
 		echoCell($button);
 
 		echo "</tr>";
-
+		
+		for ($i = 0; $i < $product[2]; $i++)
+			$_SESSION['total'] += $product[1];		
 		$productNames[] = $product[0];
 	}
 
+	echo $_SESSION['total'];
 	function echoCell($info) {
 		echo "<td>";
 		echo $info;
